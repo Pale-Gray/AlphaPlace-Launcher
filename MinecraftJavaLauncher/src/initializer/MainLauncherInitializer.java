@@ -31,7 +31,10 @@ public class MainLauncherInitializer extends JPanel implements ActionListener{
 	public JButton jb = new JButton("Start");
 	public JButton help = new JButton("Need Help?");
 	JLabel jl = new JLabel("Minecraft Launcher");
-	JLabel credit = new JLabel("<html>Programmed by Pale_Gray<html>");
+	
+	public String credittxt;
+	JLabel credit = new JLabel();
+	
 	JLabel user = new JLabel("Username");
 	JLabel pass = new JLabel("Password");
     JLabel status = new JLabel();
@@ -53,12 +56,22 @@ public class MainLauncherInitializer extends JPanel implements ActionListener{
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			x++;
-			if (x > 300) {
-				x = -200;
+			if (x > 300 && credittxt == "Programmed by Pale_Gray") {
+				credittxt = "Special thanks to:";
+				x = -137;
 			}
-			credit.setBounds(x, 5, 200, 20);
+			if (x > 300 && credittxt == "Special thanks to:") {
+				credittxt = "Windows7Ultimate for creating Alphaplace";
+				x = -344;
+			}
+			if (x > 300 && credittxt == "Windows7Ultimate for creating Alphaplace") {
+				x = -137;
+				credittxt = "Programmed by Pale_Gray";
+			}
+			credit.setBounds(x, 5, 300, 20);
+			credit.setText(credittxt);
+			credit.repaint();
 		}
-		
 	});
 	public Timer t = new Timer(1, new ActionListener() {
 		@Override
@@ -99,6 +112,8 @@ public class MainLauncherInitializer extends JPanel implements ActionListener{
 	String cmd = "javaw -Xms1024m -Xmx1024m -cp C:\\Users\\" + name + "\\AppData\\Roaming\\.minecraft\\versions\\b1.1_02\\b1.1_02.jar;C:\\Users\\" + name + "\\AppData\\Roaming\\.minecraft\\libraries\\org\\lwjgl\\lwjgl\\lwjgl\\lwjgl-2.6\\jar\\lwjgl.jar;C:\\Users\\" + name + "\\AppData\\Roaming\\.minecraft\\libraries\\org\\lwjgl\\lwjgl\\lwjgl\\lwjgl-2.6\\jar\\lwjgl_util.jar;C:\\Users\\" + name + "\\AppData\\Roaming\\.minecraft\\libraries\\org\\lwjgl\\lwjgl\\lwjgl\\lwjgl-2.6\\jar\\jinput.jar;C:\\Users\\" + name + "\\AppData\\Roaming\\.minecraft\\libraries\\net\\java\\jutils\\jutils\\1.0.0\\jutils-1.0.0.jar -Djava.library.path=C:\\Users\\" + name + "\\AppData\\Roaming\\.minecraft\\libraries\\org\\lwjgl\\lwjgl\\lwjgl\\lwjgl-2.6\\native\\windows net.minecraft.client.Minecraft ";
 	
 	public void initializeJFrame(){
+		
+		credittxt = "Programmed by Pale_Gray";
 		
 		Desktop dsk = Desktop.getDesktop();
 		
